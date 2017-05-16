@@ -16,17 +16,23 @@ import javafx.scene.paint.Color;
 public class Controller {
 
     String string;
+    MyArray array = new MyArray();
+
 
     @FXML
     private TextField textField;
+
+    @FXML
+    Label qString;
 
     @FXML
     private TextArea textArea;
 
     @FXML
     public void generate(ActionEvent actionEvent) {
-        string = textField.getText();
-        textArea.setText(string);
+        array.setArray(textField.getText(), "123");
+        array.lexSort(textArea);
+        qString.setText("" + array.fatctorial());
     }
 
 }
