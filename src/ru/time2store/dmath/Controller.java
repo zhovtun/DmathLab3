@@ -24,8 +24,8 @@ public class Controller {
     private TextArea textArea;
 
     @FXML
-    public void generate (ActionEvent actionEvent) {
-        string = textArea.getText();
+    public void generate(ActionEvent actionEvent) {
+        string = textField.getText();
         textArea.setText(string);
     }
 
