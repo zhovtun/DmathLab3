@@ -35,7 +35,7 @@ public class Main
     public static void main(String[] args)
     {
         Main m = new Main();
-        String[] array = {"a", "b", "c", "d", "e"};
+        String[] array = {"1", "2", "a", "b", "c"};
         m.lexSort(array);
 
 
@@ -45,28 +45,32 @@ public class Main
 
 
     public void lexSort (String[] array) {
+
         int i=array.length-2;;
         int m=array.length-1;;
         int count = 0;
         boolean t = true;
         String temp;
+
+        printArray(array);
+
         while (t) {
             do {
                 m=array.length-1;
-                if (array[i].compareTo(array[i+1])<0) {
+                if (array[i].compareTo(array[i+1])<0) { // Если array[i] < array[i+1]
                     count = 0;
-                    do {                            // Поиск первого с конца элемнта > array[i]
+                    do {                            // Поиск первого с конца элемнта array[m]  > array[i]
                         if (array[m].compareTo(array[i]) > 0 ) {
-                            temp = array[m];
+                            temp = array[m];        // Меняем местами  array[i] и array[m]
                             array[m] = array[i];
                             array[i] = temp;
-                            m = i;
+                            m = i;                  // Выход из цикла
                         }
                         m--;
                     } while (m > i);
-                    reverseArray(array, i+1);
+                    reverseArray(array, i+1);  // Переписываем в порядке возрастания
                     i=array.length-1;
-                    printArray(array);
+                    printArray(array);                  // Печать перестановки
                     }
                 i--;
                 count++;
