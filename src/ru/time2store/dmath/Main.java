@@ -6,8 +6,8 @@ public class Main
 {
 
 
-    public void reverseArray (int[] array, int position) {
-        int temp;
+    public void reverseArray (String[] array, int position) {
+        String temp;
         int i = 0;
         int p = position + (array.length-position)/2;
         while (position < p) {
@@ -19,7 +19,7 @@ public class Main
         }
     }
 
-    public void printArray (int[] array) {
+    public void printArray (String[] array) {
         System.out.print("[ ");
         int i = 0;
         while (i< array.length) {
@@ -35,7 +35,7 @@ public class Main
     public static void main(String[] args)
     {
         Main m = new Main();
-        int[] array = {1, 2, 3, 4, 5};
+        String[] array = {"a", "b", "c", "d", "e"};
         m.lexSort(array);
 
 
@@ -44,20 +44,19 @@ public class Main
 
 
 
-    public void lexSort (int[] array) {
+    public void lexSort (String[] array) {
         int i=array.length-2;;
         int m=array.length-1;;
         int count = 0;
         boolean t = true;
-        int temp=0;
-        printArray(array);
+        String temp;
         while (t) {
             do {
                 m=array.length-1;
-                if (array[i] < array[i+1]) {
+                if (array[i].compareTo(array[i+1])<0) {
                     count = 0;
                     do {                            // Поиск первого с конца элемнта > array[i]
-                        if (array[m] > array[i]) {
+                        if (array[m].compareTo(array[i]) > 0 ) {
                             temp = array[m];
                             array[m] = array[i];
                             array[i] = temp;
