@@ -2,6 +2,10 @@ package ru.time2store.dmath;
 
 import javafx.scene.control.TextArea;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.String;
 
 public class MyArray
@@ -345,15 +349,26 @@ public class MyArray
     }
 
 
-    public void lexSort (TextArea textArea) {
+    public void lexSort (TextArea textArea) throws IOException {
 
         int i=arr1.length-2;;
         int m;
+        int fact = factorial();
         int count = 0;
         boolean t = true;
         String temp;
+        File file = new File("./", "~temp");
+        if (file.exists()) {file.delete();}
+        else {file.createNewFile();}
 
-       textArea.setText(printArray(arr1));
+        FileWriter ifstream = new FileWriter("~temp");
+
+        if (fact< 5041) {textArea.setText(printArray(arr1));}
+        else {
+            textArea.setText("При количестве элементов множества > 7 программа выводит данные с большой задержкой,\n" +
+                    "поэтому для вывода данных используется внешний редактор текстовых файлов AkelPad.exe.");
+            ifstream.write(printArray(arr1));
+        }
 
         while (t) {
             do {
@@ -372,7 +387,8 @@ public class MyArray
                     reverseArray(arr1, i+1);  // Переписываем в порядке возрастания
                     i=arr1.length-1;
 
-                    textArea.appendText(printArray(arr1));;                  // Печать перестановки
+                    if (fact < 5041) {textArea.appendText(printArray(arr1));} //Печать набора
+                    else {ifstream.write(printArray(arr1));}
                     
                 }
                 i--;
@@ -380,10 +396,11 @@ public class MyArray
                 if (count == arr1.length) {t=false;}
             } while (count < arr1.length);
         }
-
+        ifstream.close();
+        if (fact > 5100) {Runtime.getRuntime().exec("./AkelPad.exe ~temp");}
     }
 
-    public int fatctorial () {
+    public int factorial () {
         int result = 1;
         for (int i = 2; i <= arr1.length; i++) {
             result *= i;

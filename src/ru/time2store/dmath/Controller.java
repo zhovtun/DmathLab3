@@ -12,6 +12,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
+import java.io.IOException;
+
 
 public class Controller {
 
@@ -29,10 +31,10 @@ public class Controller {
     private TextArea textArea;
 
     @FXML
-    public void generate(ActionEvent actionEvent) {
+    public void generate(ActionEvent actionEvent) throws IOException {
         array.setArray(textField.getText(), "123");
         array.lexSort(textArea);
-        qString.setText("" + array.fatctorial());
+        qString.setText("" + array.factorial());
     }
 
 }
