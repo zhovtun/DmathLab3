@@ -33,8 +33,8 @@ public class Controller {
     @FXML
     public void generate(ActionEvent actionEvent) throws IOException {
         array.setArray(textField.getText(), "123");
-        array.lexSort(textArea);
-        qString.setText("" + array.factorial());
+        array.codeGray(textArea);
+        //qString.setText("" + array.factorial());
     }
 
 }

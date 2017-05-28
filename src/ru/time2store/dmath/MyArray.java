@@ -1,12 +1,16 @@
 package ru.time2store.dmath;
 
 import javafx.scene.control.TextArea;
+import java.lang.Math.*;
+
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.String;
+
+import static java.lang.Math.pow;
 
 public class MyArray
 {
@@ -20,6 +24,7 @@ public class MyArray
     private String[] arr1;
     private String[] arr2;
     private String[] arr3;
+    private int[] binArray;
 
 
     /* Конструктор для создания мссивов  */
@@ -37,6 +42,7 @@ public class MyArray
         arr1 = buildArray (str1);
         arr2 = buildArray (str2);
         arr3 = new String[arr1.length + arr2.length];
+        binArray = new int[arr1.length];
     }
 
     /*
@@ -419,5 +425,74 @@ public class MyArray
             i++;
             position++;
         }
+    }
+
+    //
+    // Лбораторная №4
+    //
+
+    private int setBite (int bit) {
+        if (bit == 0) {return 1;}
+        else {return 0;}
+    }
+
+    private String printBinArray () {
+        String result = "{ "; // Печать бинарного массива
+        int i = 0;
+        while (i < binArray.length) {
+            result += binArray[i] + " ";
+            i++;
+        }
+        result += "} - { ";
+         i = 0;
+         while (i < arr1.length) {  // В соответствии с бинарным, печать множества
+             if (binArray[i] == 1) {
+                 result += arr1[i] + " ";
+             }
+             i++;
+         }
+        result += "} \n";
+        return result;
+    }
+
+    private int factorization (int num) {
+        int result = 1;
+        while (num % 2 == 0) {
+            result +=1;
+            num /= 2;
+        }
+
+        return result;
+    }
+
+    public void codeGray (TextArea textArea) throws IOException  {
+        int i = 1;
+        int power = (int)pow(2, arr1.length);
+
+        File file = new File("./", "~temp");
+        if (file.exists()) {file.delete();}
+        else {file.createNewFile();}
+
+        FileWriter ifstream = new FileWriter("~temp");
+
+        if (power < 2049) textArea.setText("0. " + printBinArray());
+        else {
+            textArea.setText("При количестве элементов множества > 11 программа выводит данные с большой задержкой,\n" +
+                    "поэтому для вывода данных используется внешний редактор текстовых файлов AkelPad.exe.");
+            ifstream.write("0. " + printBinArray());
+        }
+
+        //Печать исходнного массива c нулями
+
+        while (i < power) {
+            binArray[binArray.length - factorization(i)] = setBite(binArray[binArray.length - factorization(i)]);
+
+            if (power < 2049) textArea.appendText("0. " + printBinArray());
+            else ifstream.write(i + ". " + printBinArray());
+            i++;
+        }
+
+        ifstream.close();
+        if (power > 2049) {Runtime.getRuntime().exec("./AkelPad.exe ~temp");}
     }
 }
