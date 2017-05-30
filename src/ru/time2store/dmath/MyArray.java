@@ -495,7 +495,7 @@ public class MyArray
 
             binArray[binArray.length - factorization(i)] = setBite(binArray[binArray.length - factorization(i)]);
 
-            if (power < 2049) textArea.appendText("0. " + printBinArray());
+            if (power < 2049) textArea.appendText(i + " " + printBinArray());
             else ifstream.write(i + ". " + printBinArray());
             i++;
         }
