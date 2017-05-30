@@ -25,16 +25,12 @@ public class Controller {
     private TextField textField;
 
     @FXML
-    Label qString;
-
-    @FXML
     private TextArea textArea;
 
     @FXML
     public void generate(ActionEvent actionEvent) throws IOException {
         array.setArray(textField.getText(), "123");
         array.codeGray(textArea);
-        //qString.setText("" + array.factorial());
     }
 
 }

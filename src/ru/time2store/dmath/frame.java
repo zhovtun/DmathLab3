@@ -15,7 +15,7 @@ public class frame extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Controller.fxml"));
-        primaryStage.setTitle("Лабораторная работа по Дискретной математике №3");
+        primaryStage.setTitle("Лабораторная работа по Дискретной математике №4");
         primaryStage.setResizable(true);
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();

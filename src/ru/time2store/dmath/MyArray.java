@@ -431,13 +431,15 @@ public class MyArray
     // Лбораторная №4
     //
 
-    private int setBite (int bit) {
+    private int setBite (int bit) {  // метод замены байта на 0 если 1, и на 1 если 0
         if (bit == 0) {return 1;}
         else {return 0;}
     }
 
+    // Метод для печати результатов вычислений
+
     private String printBinArray () {
-        String result = "{ "; // Печать бинарного массива
+        String result = "{ ";  // Печать бинарного массива
         int i = 0;
         while (i < binArray.length) {
             result += binArray[i] + " ";
@@ -455,6 +457,8 @@ public class MyArray
         return result;
     }
 
+    //Метод для разложения на множетили по 2
+
     private int factorization (int num) {
         int result = 1;
         while (num % 2 == 0) {
@@ -464,6 +468,8 @@ public class MyArray
 
         return result;
     }
+
+    // Метод для потроения множеств, используя бинарные коды Грея.
 
     public void codeGray (TextArea textArea) throws IOException  {
         int i = 1;
@@ -475,16 +481,18 @@ public class MyArray
 
         FileWriter ifstream = new FileWriter("~temp");
 
-        if (power < 2049) textArea.setText("0. " + printBinArray());
+        if (power < 2049) textArea.setText("0. " + printBinArray());  //Печать исходнного массива c нулями
         else {
             textArea.setText("При количестве элементов множества > 11 программа выводит данные с большой задержкой,\n" +
                     "поэтому для вывода данных используется внешний редактор текстовых файлов AkelPad.exe.");
             ifstream.write("0. " + printBinArray());
         }
 
-        //Печать исходнного массива c нулями
-
         while (i < power) {
+
+            // Изменить значение массива на 0 если 1, и на 1 если 0,
+            // по адресу factorization[i].
+
             binArray[binArray.length - factorization(i)] = setBite(binArray[binArray.length - factorization(i)]);
 
             if (power < 2049) textArea.appendText("0. " + printBinArray());
